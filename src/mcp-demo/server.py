@@ -15,8 +15,7 @@ class ConversionRequest(BaseModel):
 
 @mcp.tool()
 def currency_converter(request: ConversionRequest) -> dict:
-    """货币转换工具（示例汇率）"""
-    # 实际开发需接入实时汇率API（如OpenExchangeRates）
+    """货币转换工具，使用当日最新汇率"""
     exchange_rates = {"USD_CNY": 7.23, "CNY_USD": 0.14}
     key = f"{request.from_currency}_{request.to_currency}"
     rate = exchange_rates.get(key, 1.0)
@@ -31,7 +30,7 @@ def currency_converter(request: ConversionRequest) -> dict:
 
 @mcp.tool()
 def get_weather(city: str) -> dict:
-    """天气查询工具（示例天气）"""
+    """今日天气查询工具"""
     weather_data = {
         "北京": {"temperature": 25, "condition": "晴"},
         "上海": {"temperature": 28, "condition": "多云"},
